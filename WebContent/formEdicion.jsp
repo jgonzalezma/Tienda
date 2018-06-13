@@ -8,15 +8,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
+<jsp:include page="navBar.html"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<form action="CambiarProducto" method="post">
 				<input type="hidden" name="id" value="${producto.id}"/>
-				Nombre: <input type="text" name="nombre" value="${producto.nombre}"/>
-				Fecha de compra: <input type="date" name="fechaCompra" value="${producto.fechaCompra}"/>
-				Precio: <input type="text" name="nombre" value="${producto.precio}"/>
-				<input type="submit" value="Guardar"/>
+				Nombre: <input type="text" name="nombre" value="${producto.nombre}"/><br><br>
+				Fecha de compra: <input type="text" paceholder="yyyy-MM-dd" name="fechaCompra" value="${producto.fechaCompra}"/><br><br>
+				Precio: <input type="text" name="nombre" value="${producto.precio}"/><br><br>
+				<input class="btn btn-primary" type="submit" value="Guardar"/>
 				</form>
 			</div>
 		</div>
