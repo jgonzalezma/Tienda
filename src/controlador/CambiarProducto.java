@@ -54,6 +54,7 @@ public class CambiarProducto extends HttpServlet {
 			productoModelo.update(producto);
 			// abrir ver producto
 			response.sendRedirect("VerProducto?id=" + id);
+			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -1,9 +1,11 @@
 package modelo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ProductoModelo extends Conector{
@@ -53,8 +55,17 @@ public class ProductoModelo extends Conector{
 	}
 
 	public void update(Producto producto) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("UPDATE productos SET nombre = ?, fecha_compra = ?, precio = ? WHERE id = ?");
+				pst.setString(1, producto.getNombre());
+				pst.setDate(2, new java.sql.Date(producto.getFechaCompra().getTime()));
+				pst.setDouble(3, producto.getPrecio());
+				pst.setInt(4, producto.getId());
+				pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
-
 }
