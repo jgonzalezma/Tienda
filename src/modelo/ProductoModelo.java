@@ -9,9 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ProductoModelo extends Conector{
-	MarcaModelo marcaModelo = new MarcaModelo();
 	public ArrayList<Producto> selectAll() {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
+		MarcaModelo marcaModelo = new MarcaModelo();
 		try {
 			Statement st = conexion.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM productos");
@@ -21,11 +21,11 @@ public class ProductoModelo extends Conector{
 				producto.setNombre(rs.getString("nombre"));
 				producto.setFechaCompra(rs.getDate("fecha_compra"));
 				producto.setPrecio(rs.getDouble("precio"));
+				
+				Marca marca = marcaModelo.select(rs.getInt("id_marca"));
+				producto.setMarca(marca);
+				
 				productos.add(producto);
-				Marca marca = new Marca();
-				marca.setId(rs.getInt("id"));
-				marca.setNombre(rs.getString("nombre"));
-				producto.setMarca(marcaModelo.select(rs.getInt("id_marca")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -34,6 +34,7 @@ public class ProductoModelo extends Conector{
 	}
 
 	public Producto selectPorId(int idProducto) {
+		MarcaModelo marcaModelo = new MarcaModelo();
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("SELECT * FROM productos WHERE id = ?");
 			pst.setInt(1, idProducto);
@@ -45,6 +46,7 @@ public class ProductoModelo extends Conector{
 				producto.setFechaCompra(rs.getDate("fecha_compra"));
 				producto.setPrecio(rs.getDouble("precio"));
 				Marca marca = marcaModelo.select(rs.getInt("id_marca"));
+				producto.setMarca(marca);
 				
 				return producto;
 			}else{
@@ -81,7 +83,7 @@ public class ProductoModelo extends Conector{
 		}	
 	}
 
-	public Producto insert(Producto producto) {
+	public void insert(Producto producto) {
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("INSERT INTO productos (nombre, fecha_compra, precio, id_marca) VALUES (?, ?, ?, ?)");
 			pst.setString(1, producto.getNombre());
@@ -93,6 +95,5 @@ public class ProductoModelo extends Conector{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return producto;
 	}
 }

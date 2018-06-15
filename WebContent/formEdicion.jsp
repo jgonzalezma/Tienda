@@ -16,13 +16,13 @@
 				<form action="CambiarProducto" method="post">
 				<input type="hidden" name="id" value="${producto.id}"/>
 				Nombre: <input type="text" name="nombre" value="${producto.nombre}"/><br><br>
-				Fecha de compra: <input type="date" paceholder="yyyy-MM-dd" name="fechaCompra" value="${producto.fechaCompra}"/><br><br>
+				Fecha de compra: <input type="date" paceholder="yyyy-MM-dd" name="fecha_compra" value="${producto.fechaCompra}"/><br><br>
 				Precio: <input type="text" name="precio" value="${producto.precio}"/><br><br>
 				<strong>Marca:</strong>
 					<select name="marca">
 						<c:forEach items="${marcas}" var="marca">
 							<c:if test="${marca.id == producto.marca.id}">
-								<option value="${marca.id}" selected="${marca.nombre}"></option>
+								<option value="${marca.id}" selected>${marca.nombre}</option>
 							</c:if>
 							<c:if test="${marca.id != producto.marca.id}">
 								<option value="${marca.id}">${marca.nombre}</option>

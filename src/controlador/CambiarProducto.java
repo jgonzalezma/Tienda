@@ -38,7 +38,7 @@ public class CambiarProducto extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nombre = request.getParameter("nombre");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date fecha_compra = sdf.parse(request.getParameter("fechaCompra"));
+			Date fecha_compra = sdf.parse(request.getParameter("fecha_compra"));
 			Double precio = Double.parseDouble(request.getParameter("precio"));
 			
 			// crear objeto producto
