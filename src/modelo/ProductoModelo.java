@@ -68,4 +68,29 @@ public class ProductoModelo extends Conector{
 		}
 		
 	}
+
+	public void delete(int id) {
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("DELETE FROM productos WHERE id = ?");
+			pst.setInt(1, id);
+			pst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+
+	public Producto insert(Producto producto) {
+		try {
+			PreparedStatement pst = super.conexion.prepareStatement("INSERT INTO productos (nombre, fecha_compra, precio, id_marca) VALUES (?, ?, ?, ?)");
+			pst.setString(1, producto.getNombre());
+			pst.setDate(2, new java.sql.Date(producto.getFechaCompra().getTime()));
+			pst.setDouble(3, producto.getPrecio());
+			pst.setInt(4, producto.getMarca().getId());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return producto;
+	}
 }

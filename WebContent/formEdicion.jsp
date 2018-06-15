@@ -16,7 +16,7 @@
 				<input type="hidden" name="id" value="${producto.id}"/>
 				Nombre: <input type="text" name="nombre" value="${producto.nombre}"/><br><br>
 				Fecha de compra: <input type="date" paceholder="yyyy-MM-dd" name="fechaCompra" value="${producto.fechaCompra}"/><br><br>
-				Precio: <input type="number" name="precio" value="${producto.precio}"/><br><br>
+				Precio: <input type="text" name="precio" value="${producto.precio}"/><br><br>
 				<input class="btn btn-primary" type="submit" value="Guardar"/>
 				</form>
 			</div>
