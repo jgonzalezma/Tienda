@@ -1,12 +1,16 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Marca;
+import modelo.MarcaModelo;
 import modelo.Producto;
 import modelo.ProductoModelo;
 
@@ -35,8 +39,12 @@ public class EditarProducto extends HttpServlet {
 		ProductoModelo productoModelo = new ProductoModelo();
 		// poner el selectPorId
 		Producto producto = productoModelo.selectPorId(idProducto);
+		// conseguir todas las marcas
+		MarcaModelo marcaModelo = new MarcaModelo();
+		ArrayList<Marca> marcas = marcaModelo.selectAll();
 		// hacer el request
 		request.setAttribute("producto", producto);
+		request.setAttribute("marcas", marcas);
 		// enviarlo a la vista
 		request.getRequestDispatcher("formEdicion.jsp").forward(request, response);
 	}

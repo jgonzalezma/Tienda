@@ -19,6 +19,7 @@
       <th scope="col">Nombre del producto</th>
       <th scope="col">Fecha de compra</th>
       <th scope="col">Precio</th>
+      <th scope="col">Marca</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,7 @@
       <td>${producto.nombre}</td>
       <td>${producto.fechaCompra}</td>
       <td>${producto.precio}</td>
+      <td>${producto.marca.nombre}</td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +18,17 @@
 				Nombre: <input type="text" name="nombre" value="${producto.nombre}"/><br><br>
 				Fecha de compra: <input type="date" paceholder="yyyy-MM-dd" name="fechaCompra" value="${producto.fechaCompra}"/><br><br>
 				Precio: <input type="text" name="precio" value="${producto.precio}"/><br><br>
+				<strong>Marca:</strong>
+					<select name="marca">
+						<c:forEach items="${marcas}" var="marca">
+							<c:if test="${marca.id == producto.marca.id}">
+								<option value="${marca.id}" selected="${marca.nombre}"></option>
+							</c:if>
+							<c:if test="${marca.id != producto.marca.id}">
+								<option value="${marca.id}">${marca.nombre}</option>
+							</c:if>
+  						</c:forEach>
+					</select>
 				<input class="btn btn-primary" type="submit" value="Guardar"/>
 				</form>
 			</div>

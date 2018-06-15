@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ProductoModelo extends Conector{
-
+	MarcaModelo marcaModelo = new MarcaModelo();
 	public ArrayList<Producto> selectAll() {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		try {
@@ -22,6 +22,10 @@ public class ProductoModelo extends Conector{
 				producto.setFechaCompra(rs.getDate("fecha_compra"));
 				producto.setPrecio(rs.getDouble("precio"));
 				productos.add(producto);
+				Marca marca = new Marca();
+				marca.setId(rs.getInt("id"));
+				marca.setNombre(rs.getString("nombre"));
+				producto.setMarca(marcaModelo.select(rs.getInt("id_marca")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,9 +44,7 @@ public class ProductoModelo extends Conector{
 				producto.setNombre(rs.getString("nombre"));
 				producto.setFechaCompra(rs.getDate("fecha_compra"));
 				producto.setPrecio(rs.getDouble("precio"));
-				//Marca marca = new Marca();
-				//marca.setId(rs.getInt("id"));
-				//producto.setMarca(marca);
+				Marca marca = marcaModelo.select(rs.getInt("id_marca"));
 				
 				return producto;
 			}else{
